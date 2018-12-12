@@ -50542,7 +50542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         logout: function logout() {
-            axios.post('/logout').then(function (response) {
+            axios.post('api/logout').then(function (response) {
                 localStorage.removeItem('jwt');
                 location.reload();
             }).catch(function (error) {
@@ -50633,20 +50633,22 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.logout($event)
-                          }
-                        }
-                      },
-                      [_vm._v("Logout")]
-                    )
+                    _vm.isLoggedIn
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.logout($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Logout")]
+                        )
+                      : _vm._e()
                   ],
                   1
                 )

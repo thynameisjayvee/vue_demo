@@ -21,10 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
-
+//Route::post('logout', 'UserController@logout');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/logout', 'UserController@logout');
+
     Route::get('/category/{category}/tasks', 'CategoryController@tasks');
     Route::resource('/category', 'CategoryController');
     Route::resource('/task', 'TaskController');

@@ -13,7 +13,7 @@
 
 
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
-Route::post('logout', 'UserController@logout');
+//Route::post('logout', 'UserController@logout');
 
 
 Route::get('/', function () {
