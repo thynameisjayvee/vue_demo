@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function tasks(Category $category){
-      return response()->json($category->tasks()->orderBy('order')->get());
+
+      $task_data = $category->tasks()->where('user_id', Auth::user()->id)->orderBy('order')->get();
+
+      return response()->json($task_data);
     }
 
     /**

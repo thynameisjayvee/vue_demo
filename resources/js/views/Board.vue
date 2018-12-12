@@ -66,12 +66,13 @@
       data(){
           return {
               categories : [],
-              editingTask : null
+              editingTask : null,
+              user_key_id : null
           }
       },
       methods : {
           addNew(id) {
-            let user_id = 1
+            let user_id = localStorage.getItem('user_id')
             let name = "New task"
             let category_id = this.categories[id].id
             let order = this.categories[id].tasks.length
@@ -127,6 +128,7 @@
             })
             this.loadTasks()
         })
+
       },
       computed: {
           dragOptions () {

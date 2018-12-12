@@ -76,7 +76,8 @@
                        c_password : this.password_confirmation
                      })
                      .then(response => {
-                       localStorage.setItem('user',response.data.success.name)
+                       localStorage.setItem('user_id',response.data.success.id)
+                       localStorage.setItem('user_name',response.data.success.name)
                        localStorage.setItem('jwt',response.data.success.token)
 
                        if (localStorage.getItem('jwt') != null){

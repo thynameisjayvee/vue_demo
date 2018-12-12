@@ -50552,7 +50552,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.isLoggedIn = localStorage.getItem('jwt');
-        this.name = localStorage.getItem('user');
+        this.name = localStorage.getItem('user_name');
     }
 });
 
@@ -50618,7 +50618,7 @@ var render = function() {
                     _vm._v(" "),
                     _vm.isLoggedIn
                       ? _c("li", { staticClass: "nav-link" }, [
-                          _vm._v(" Hi, " + _vm._s(_vm.name))
+                          _vm._v(" Hi, " + _vm._s(this.name))
                         ])
                       : _vm._e(),
                     _vm._v(" "),
@@ -50894,7 +50894,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             categories: [],
-            editingTask: null
+            editingTask: null,
+            user_key_id: null
         };
     },
 
@@ -50902,7 +50903,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addNew: function addNew(id) {
             var _this = this;
 
-            var user_id = 1;
+            var user_id = localStorage.getItem('user_id');
             var name = "New task";
             var category_id = this.categories[id].id;
             var order = this.categories[id].tasks.length;
@@ -53252,7 +53253,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     email: this.email,
                     password: this.password
                 }).then(function (response) {
-                    localStorage.setItem('user', response.data.success.name);
+                    localStorage.setItem('user_id', response.data.success.id);
+                    localStorage.setItem('user_name', response.data.success.name);
                     localStorage.setItem('jwt', response.data.success.token);
 
                     if (localStorage.getItem('jwt') != null) {
@@ -53530,7 +53532,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     password: this.password,
                     c_password: this.password_confirmation
                 }).then(function (response) {
-                    localStorage.setItem('user', response.data.success.name);
+                    localStorage.setItem('user_id', response.data.success.id);
+                    localStorage.setItem('user_name', response.data.success.name);
                     localStorage.setItem('jwt', response.data.success.token);
 
                     if (localStorage.getItem('jwt') != null) {
