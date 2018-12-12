@@ -6,8 +6,8 @@ use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-
+//use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +24,11 @@ class UserController extends Controller
       }
 
       return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    public function logout(){
+      Auth::logout();
+      return response()->json(['logout' => true]);
     }
 
     public function register(Request $request){

@@ -17,6 +17,7 @@
                             <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
                             <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
                             <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
+                            <a href="#" class="nav-link" @click.prevent="logout">Logout</a>
                         </ul>
                     </div>
                 </div>
@@ -33,6 +34,16 @@ export default {
             isLoggedIn : null,
             name : null
         }
+    },
+    methods : {
+      logout(){
+        axios.post('/logout').then(response => {
+          localStorage.removeItem('jwt')
+          location.reload();
+        }).catch(error => {
+          location.reload();
+        });
+      }
     },
     mounted(){
         this.isLoggedIn = localStorage.getItem('jwt')
