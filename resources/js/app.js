@@ -6,6 +6,7 @@
  */
 
 import VueRouter from 'vue-router'
+import VueCookie from 'vue-cookie'
 
 require('./bootstrap');
 
@@ -19,13 +20,13 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 Vue.use(VueRouter)
+Vue.use(VueCookie)
 
 import App from './views/App'
 import Dashboard from './views/Board'
 import Login from './views/Login'
 import Register from './views/Register'
 import Home from './views/Welcome'
-
 
 const router = new VueRouter({
   mode: 'history',

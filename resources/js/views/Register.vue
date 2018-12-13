@@ -76,11 +76,11 @@
                        c_password : this.password_confirmation
                      })
                      .then(response => {
-                       localStorage.setItem('user_id',response.data.success.id)
-                       localStorage.setItem('user_name',response.data.success.name)
-                       localStorage.setItem('jwt',response.data.success.token)
-
-                       if (localStorage.getItem('jwt') != null){
+                       this.$cookie.set('user_id',response.data.success.id)
+                       this.$cookie.set('user_name',response.data.success.name)
+                       this.$cookie.set('jwt', response.data.success.token)
+                       //localStorage.setItem('jwt',response.data.success.token)
+                       if (this.$cookie.get('jwt') != null){
                            this.$router.go('/board')
                        }
                      })
@@ -96,11 +96,13 @@
            }
        },
        beforeRouteEnter (to, from, next) {
-           if (localStorage.getItem('jwt')) {
-               return next('board');
-           }
+           next(vm => {
+             if (vm.$cookie.get('jwt')){
+               return next('board')
+             }
 
-           next();
+             next()
+           });
        }
    }
 </script>

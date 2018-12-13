@@ -29,6 +29,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vue-cookie": "^1.1.4",
+    "vue-cookies": "^1.5.12",
     "vue-router": "^3.0.2",
     "vuedraggable": "^2.17.0"
   }

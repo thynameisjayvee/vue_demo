@@ -72,7 +72,7 @@
       },
       methods : {
           addNew(id) {
-            let user_id = localStorage.getItem('user_id')
+            let user_id = this.$cookie.get('user_id')
             let name = "New task"
             let category_id = this.categories[id].id
             let order = this.categories[id].tasks.length
@@ -84,7 +84,12 @@
           loadTasks() {
             this.categories.map(category => {
                 axios.get(`api/category/${category.id}/tasks`).then(response => {
-                    category.tasks = response.data
+                  category.tasks = response.data.task_data
+                  for (var count = 0; count < response.data.task_data.length; count++) {
+                    //console.log(count)
+                    console.log(response.data.task_data[count].name)
+                  }
+                  console.log(category.id)
                 })
             })
           },
@@ -113,7 +118,7 @@
           }
       },
       mounted() {
-        let token = localStorage.getItem('jwt')
+        let token = this.$cookie.get('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
@@ -140,11 +145,13 @@
           },
       },
       beforeRouteEnter (to, from, next) {
-          if ( ! localStorage.getItem('jwt')) {
-              return next('login')
+        next(vm => {
+          if (! vm.$cookie.get('jwt')){
+            return next('login')
           }
 
           next()
+        });
       }
   }
 </script>

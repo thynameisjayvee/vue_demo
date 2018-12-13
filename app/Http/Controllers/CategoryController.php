@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
       $task_data = $category->tasks()->where('user_id', Auth::user()->id)->orderBy('order')->get();
 
-      return response()->json($task_data);
+      return response()->json(['task_data' => $task_data]);
     }
 
     /**

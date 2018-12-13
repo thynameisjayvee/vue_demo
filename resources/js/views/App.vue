@@ -38,16 +38,19 @@ export default {
     methods : {
       logout(){
         axios.post('api/logout').then(response => {
-          localStorage.removeItem('jwt')
-          location.reload();
+          this.$cookie.delete('user_id')
+          this.$cookie.delete('user_name')
+          this.$cookie.delete('jwt')
+          location.reload()
         }).catch(error => {
           location.reload();
         });
       }
     },
     mounted(){
-        this.isLoggedIn = localStorage.getItem('jwt')
-        this.name = localStorage.getItem('user_name');
+        this.isLoggedIn = this.$cookie.get('jwt')//localStorage.getItem('jwt')
+        this.name = this.$cookie.get('user_name')
+        //console.log(test)
     }
 }
 </script>
