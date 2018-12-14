@@ -26,15 +26,16 @@ import App from './views/App'
 import Dashboard from './views/Board'
 import Login from './views/Login'
 import Register from './views/Register'
-import Home from './views/Welcome'
+import Welcome from './views/Welcome'
+import Home from './views/Home'
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'welcome',
+      component: Welcome
     },
     {
       path: '/login',
@@ -49,6 +50,11 @@ const router = new VueRouter({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '/board',
